@@ -1,0 +1,103 @@
+{% extends "../base.html" %}
+{% block page_title %}瞭望管理{% end %}
+{% block body %}
+
+<div class="hero-banner">
+    <h2><i class="fas fa-binoculars"></i> 瞭望管理</h2>
+    <p>动态管理数据瞭望源，实现自动化数据采集与监控</p>
+</div>
+
+<div class="stats-row">
+    <div class="stat-card primary">
+        <div class="stat-icon"><i class="fas fa-satellite"></i></div>
+        <div class="stat-info">
+            <div class="stat-value">0</div>
+            <div class="stat-label">瞭望源总数</div>
+        </div>
+    </div>
+    <div class="stat-card success">
+        <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+        <div class="stat-info">
+            <div class="stat-value">0</div>
+            <div class="stat-label">活跃采集</div>
+        </div>
+    </div>
+    <div class="stat-card warning">
+        <div class="stat-icon"><i class="fas fa-clock"></i></div>
+        <div class="stat-info">
+            <div class="stat-value">0</div>
+            <div class="stat-label">调度任务</div>
+        </div>
+    </div>
+    <div class="stat-card info">
+        <div class="stat-icon"><i class="fas fa-cloud-download-alt"></i></div>
+        <div class="stat-info">
+            <div class="stat-value">0</div>
+            <div class="stat-label">已采集数据</div>
+        </div>
+    </div>
+</div>
+
+<div class="grid-2">
+    <div class="card">
+        <div class="card-header">
+            <h3><i class="fas fa-satellite"></i> 瞭望源列表</h3>
+            <button class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> 添加源</button>
+        </div>
+        <div class="card-body">
+            <div class="empty-state">
+                <i class="fas fa-satellite-dish"></i>
+                <h3>暂无瞭望源</h3>
+                <p>添加数据采集源以开始数据瞭望</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header"><h3><i class="fas fa-shield-alt"></i> 安全防护状态</h3></div>
+        <div class="card-body">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:#f0fdf4;border-radius:var(--radius-sm);border-left:4px solid var(--color-success);">
+                    <div>
+                        <strong>CSRF 防护</strong>
+                        <div style="font-size:12px;color:var(--text-muted);">跨站请求伪造防护</div>
+                    </div>
+                    <span class="badge badge-success">已启用</span>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:#f0fdf4;border-radius:var(--radius-sm);border-left:4px solid var(--color-success);">
+                    <div>
+                        <strong>SSRF 防护</strong>
+                        <div style="font-size:12px;color:var(--text-muted);">服务端请求伪造防护</div>
+                    </div>
+                    <span class="badge badge-success">已启用</span>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:#f0fdf4;border-radius:var(--radius-sm);border-left:4px solid var(--color-success);">
+                    <div>
+                        <strong>Cookie 加密</strong>
+                        <div style="font-size:12px;color:var(--text-muted);">Secure Cookie 机制</div>
+                    </div>
+                    <span class="badge badge-success">已启用</span>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:#fffbeb;border-radius:var(--radius-sm);border-left:4px solid var(--color-warning);">
+                    <div>
+                        <strong>频率限制</strong>
+                        <div style="font-size:12px;color:var(--text-muted);">IP/Token 请求频率限制</div>
+                    </div>
+                    <span class="badge badge-warning">待配置</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header"><h3><i class="fas fa-chart-line"></i> 舆情数据监控</h3></div>
+    <div class="card-body">
+        <div class="empty-state">
+            <i class="fas fa-chart-area"></i>
+            <h3>暂无舆情数据</h3>
+            <p>配置瞭望源后，舆情数据将在这里展示</p>
+        </div>
+    </div>
+</div>
+{% end %}

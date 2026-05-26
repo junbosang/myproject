@@ -1,0 +1,98 @@
+{% extends "../base.html" %}
+{% block page_title %}接口管理{% end %}
+{% block body %}
+
+<div class="hero-banner">
+    <h2><i class="fas fa-plug"></i> 接口管理</h2>
+    <p>统一管理 API 接口，支持接口创建、测试、监控和认证管理</p>
+</div>
+
+<div class="stats-row">
+    <div class="stat-card primary">
+        <div class="stat-icon"><i class="fas fa-network-wired"></i></div>
+        <div class="stat-info">
+            <div class="stat-value">0</div>
+            <div class="stat-label">接口总数</div>
+        </div>
+    </div>
+    <div class="stat-card success">
+        <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+        <div class="stat-info">
+            <div class="stat-value">0</div>
+            <div class="stat-label">活跃接口</div>
+        </div>
+    </div>
+    <div class="stat-card info">
+        <div class="stat-icon"><i class="fas fa-chart-bar"></i></div>
+        <div class="stat-info">
+            <div class="stat-value">0</div>
+            <div class="stat-label">今日调用</div>
+        </div>
+    </div>
+    <div class="stat-card warning">
+        <div class="stat-icon"><i class="fas fa-clock"></i></div>
+        <div class="stat-info">
+            <div class="stat-value">0ms</div>
+            <div class="stat-label">平均响应</div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h3><i class="fas fa-list"></i> 接口列表</h3>
+        <button class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> 创建接口</button>
+    </div>
+    <div class="card-body">
+        <div class="empty-state">
+            <i class="fas fa-plug"></i>
+            <h3>暂无自定义接口</h3>
+            <p>创建 API 接口供外部系统调用</p>
+        </div>
+    </div>
+</div>
+
+<div class="grid-2">
+    <div class="card">
+        <div class="card-header"><h3><i class="fas fa-key"></i> 认证方式</h3></div>
+        <div class="card-body">
+            <div style="display:flex;flex-direction:column;gap:12px;">
+                <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:#f8fafc;border-radius:var(--radius-sm);">
+                    <i class="fas fa-cookie-bite" style="color:var(--color-primary);font-size:18px;"></i>
+                    <div style="flex:1;"><strong>Cookie 认证</strong><div style="font-size:12px;color:var(--text-muted);">基于 Secure Cookie 的会话认证</div></div>
+                    <span class="badge badge-success">已启用</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:#f8fafc;border-radius:var(--radius-sm);">
+                    <i class="fas fa-key" style="color:var(--color-warning);font-size:18px;"></i>
+                    <div style="flex:1;"><strong>Token 认证</strong><div style="font-size:12px;color:var(--text-muted);">基于 API Token 的接口认证</div></div>
+                    <span class="badge badge-warning">待配置</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:#f8fafc;border-radius:var(--radius-sm);">
+                    <i class="fas fa-lock-open" style="color:var(--text-muted);font-size:18px;"></i>
+                    <div style="flex:1;"><strong>无认证</strong><div style="font-size:12px;color:var(--text-muted);">公开接口，无需认证</div></div>
+                    <span class="badge badge-primary">可选</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header"><h3><i class="fas fa-code"></i> 内置方法</h3></div>
+        <div class="card-body">
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>方法</th><th>路径</th><th>说明</th></tr></thead>
+                    <tbody>
+                        <tr><td><span class="badge badge-primary">GET</span></td><td><code>/</code></td><td>首页</td></tr>
+                        <tr><td><span class="badge badge-info">POST</span></td><td><code>/auth/login</code></td><td>登录</td></tr>
+                        <tr><td><span class="badge badge-info">POST</span></td><td><code>/auth/logout</code></td><td>登出</td></tr>
+                        <tr><td><span class="badge badge-primary">GET</span></td><td><code>/auth/register</code></td><td>注册</td></tr>
+                        <tr><td><span class="badge badge-success">GET/POST</span></td><td><code>/admin/*</code></td><td>管理接口</td></tr>
+                        <tr><td><span class="badge badge-success">GET/POST</span></td><td><code>/chat/*</code></td><td>聊天接口</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% end %}

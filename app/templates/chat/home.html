@@ -1,0 +1,108 @@
+{% extends "../base.html" %}
+{% block page_title %}智能聊天{% end %}
+{% block body %}
+
+<div class="chat-layout">
+    <!-- Left Sidebar -->
+    <div class="chat-sidebar">
+        <div class="chat-sidebar-header">
+            <span><i class="fas fa-comments"></i> 消息</span>
+            <a href="/chat/create-group" class="btn btn-outline btn-sm"><i class="fas fa-plus"></i> 建群</a>
+        </div>
+
+        <!-- Tabs -->
+        <div class="chat-sidebar-tabs">
+            <button class="chat-tab active" id="tab-friends" onclick="switchChatTab('friends')"><i class="fas fa-user-friends"></i> 好友</button>
+            <button class="chat-tab" id="tab-groups" onclick="switchChatTab('groups')"><i class="fas fa-users"></i> 群聊</button>
+            <button class="chat-tab" id="tab-employees" onclick="switchChatTab('employees')"><i class="fas fa-robot"></i> AI</button>
+        </div>
+
+        <!-- Friends list -->
+        <div class="chat-tab-content chat-contact-list" id="list-friends">
+            {% if friends %}
+            {% for f in friends %}
+            <a href="/chat/private?friend_id={{ f['id'] }}" class="chat-contact">
+                <div class="chat-contact-avatar" style="background:{{ ['#4f46e5','#10b981','#f59e0b','#ef4444','#3b82f6','#ec4899'][f['id'] % 6] }};">{{ f['username'][0].upper() }}</div>
+                <div class="chat-contact-info">
+                    <div class="chat-contact-name">{{ f['username'] }}</div>
+                    <div class="chat-contact-preview">在线</div>
+                </div>
+            </a>
+            {% end %}
+            {% else %}
+            <div class="empty-state" style="padding:24px;">
+                <i class="fas fa-inbox"></i>
+                <p>暂无好友</p>
+            </div>
+            {% end %}
+
+            <div class="chat-sidebar-section">
+                <h4>添加好友</h4>
+                {% for u in all_users %}
+                {% if u['id'] != current_user['id'] %}
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;">
+                    <div style="display:flex;align-items:center;gap:8px;">
+                        <div class="chat-contact-avatar" style="width:32px;height:32px;font-size:12px;background:var(--color-primary);">{{ u['username'][0].upper() }}</div>
+                        <span style="font-size:13px;">{{ u['username'] }}</span>
+                    </div>
+                    <form method="post" action="/chat/add-friend">
+                        {% module xsrf_form_html() %}
+                        <input type="hidden" name="friend_id" value="{{ u['id'] }}">
+                        <button type="submit" class="btn btn-outline btn-sm" style="padding:3px 10px;font-size:11px;">添加</button>
+                    </form>
+                </div>
+                {% end %}
+                {% end %}
+            </div>
+        </div>
+
+        <!-- Groups list -->
+        <div class="chat-tab-content chat-contact-list" id="list-groups" style="display:none;">
+            {% if groups %}
+            {% for g in groups %}
+            <a href="/chat/group?group_id={{ g['id'] }}" class="chat-contact">
+                <div class="chat-contact-avatar" style="background:var(--color-success);"><i class="fas fa-users"></i></div>
+                <div class="chat-contact-info">
+                    <div class="chat-contact-name">{{ g['name'] }}</div>
+                    <div class="chat-contact-preview">群聊</div>
+                </div>
+            </a>
+            {% end %}
+            {% else %}
+            <div class="empty-state" style="padding:24px;">
+                <i class="fas fa-inbox"></i>
+                <p>暂无群聊</p>
+            </div>
+            {% end %}
+            <div style="text-align:center;padding:12px;">
+                <a href="/chat/create-group" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> 创建群聊</a>
+            </div>
+        </div>
+
+        <!-- AI Employees list -->
+        <div class="chat-tab-content chat-contact-list" id="list-employees" style="display:none;">
+            {% for e in employees %}
+            <div class="chat-contact" style="cursor:default;">
+                <div class="chat-contact-avatar" style="background:var(--color-warning);font-size:22px;">{{ e['avatar'] or '🤖' }}</div>
+                <div class="chat-contact-info">
+                    <div class="chat-contact-name">{{ e['name'] }}</div>
+                    <div class="chat-contact-preview">{{ e['description'] or 'AI助手' }}</div>
+                </div>
+            </div>
+            {% end %}
+            <div style="font-size:12px;color:var(--text-muted);text-align:center;padding:12px;">
+                <i class="fas fa-info-circle"></i> 请添加数字员工为好友后即可聊天
+            </div>
+        </div>
+    </div>
+
+    <!-- Right: welcome placeholder -->
+    <div class="chat-main">
+        <div style="flex:1;display:flex;align-items:center;justify-content:center;flex-direction:column;color:var(--text-muted);">
+            <i class="fas fa-comment-dots" style="font-size:64px;margin-bottom:20px;opacity:.4;"></i>
+            <h2 style="font-weight:500;color:var(--text-secondary);">选择联系人开始聊天</h2>
+            <p style="margin-top:8px;">在左侧选择好友或群聊开始对话</p>
+        </div>
+    </div>
+</div>
+{% end %}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}cnAgentOS{% end %} - AI智能瞭望系统</title>
+    <link rel="stylesheet" href="{{ static_url('fontawesome/fontawesome-free-5.15.4-web/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ static_url('css/base.css') }}">
+</head>
+<body>
+    {% if is_login_page %}
+        {% block body %}{% end %}
+    {% else %}
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <div class="logo-icon"><i class="fas fa-robot"></i></div>
+                <div>
+                    <h1>cnAgentOS</h1>
+                    <p>AI智能瞭望系统</p>
+                </div>
+            </div>
+            <nav class="sidebar-menu">
+                <div class="menu-label">核心功能</div>
+                <a href="/" class="menu-item"><i class="fas fa-home"></i> <span>首页概览</span></a>
+                <a href="/chat/home" class="menu-item"><i class="fas fa-comments"></i> <span>智能聊天</span></a>
+
+                <div class="menu-label">管理中心</div>
+                <a href="/admin/digital-employee" class="menu-item"><i class="fas fa-user-tie"></i> <span>数字员工</span></a>
+                <a href="/admin/model-engine" class="menu-item"><i class="fas fa-brain"></i> <span>模型引擎</span></a>
+                <a href="/admin/chat-admin" class="menu-item"><i class="fas fa-cogs"></i> <span>聊天管理</span></a>
+                <a href="/admin/watch-tower" class="menu-item"><i class="fas fa-binoculars"></i> <span>瞭望管理</span></a>
+                <a href="/admin/data-warehouse" class="menu-item"><i class="fas fa-database"></i> <span>数据仓库</span></a>
+                <a href="/admin/interface" class="menu-item"><i class="fas fa-plug"></i> <span>接口管理</span></a>
+
+                <div class="menu-label">可视化</div>
+                <a href="/admin/dashboard" class="menu-item"><i class="fas fa-chart-line"></i> <span>数智大屏</span></a>
+
+                <div class="menu-label">系统</div>
+                <a href="/admin/settings" class="menu-item"><i class="fas fa-cog"></i> <span>系统设置</span></a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="avatar">{{ username[0].upper() if username else '?' }}</div>
+                <div class="sidebar-footer-text">
+                    <div class="name">{{ username }}</div>
+                    <div class="role">管理员</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main content area -->
+        <div class="main-content">
+            <header class="top-header">
+                <div class="header-left">
+                    <h1>{% block page_title %}控制台{% end %}</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <i class="fas fa-user-circle"></i>
+                        <span>{{ username }}</span>
+                    </div>
+                    <form action="/auth/logout" method="post" style="margin:0">
+                        {% module xsrf_form_html() %}
+                        <button type="submit" class="logout-btn">
+                            <i class="fas fa-sign-out-alt"></i> 退出
+                        </button>
+                    </form>
+                </div>
+            </header>
+
+            <div class="content-area">
+                {% block body %}{% end %}
+            </div>
+        </div>
+    </div>
+    {% end %}
+    <script src="{{ static_url('js/base.js') }}"></script>
+</body>
+</html>

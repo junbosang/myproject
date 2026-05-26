@@ -1,0 +1,149 @@
+{% extends "../base.html" %}
+{% block page_title %}智能聊天管理{% end %}
+{% block body %}
+
+<div class="card">
+    <div class="card-header">
+        <h3><i class="fas fa-users"></i> 群聊管理</h3>
+    </div>
+    <div class="card-body">
+        {% if groups %}
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>群聊名称</th>
+                        <th>群主ID</th>
+                        <th>公告</th>
+                        <th>状态</th>
+                        <th>创建时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for g in groups %}
+                    <tr>
+                        <td><strong>#{{ g['id'] }}</strong></td>
+                        <td><i class="fas fa-users" style="color:var(--color-success);margin-right:6px;"></i><strong>{{ g['name'] }}</strong></td>
+                        <td>{{ g['owner_id'] }}</td>
+                        <td>{{ g['announcement'] or '-' }}</td>
+                        <td>
+                            <span class="badge {{ 'badge-success' if g['status']=='active' else 'badge-danger' }}">
+                                {{ '正常' if g['status']=='active' else '已封禁' }}
+                            </span>
+                        </td>
+                        <td style="font-size:12px;color:var(--text-muted);">{{ g['create_at'] }}</td>
+                        <td>
+                            {% if g['status'] == 'active' %}
+                            <form method="post" style="display:inline;">
+                                {% module xsrf_form_html() %}
+                                <input type="hidden" name="action" value="ban_group">
+                                <input type="hidden" name="group_id" value="{{ g['id'] }}">
+                                <button type="submit" class="btn btn-warning btn-sm"><i class="fas fa-ban"></i> 封禁</button>
+                            </form>
+                            {% else %}
+                            <form method="post" style="display:inline;">
+                                {% module xsrf_form_html() %}
+                                <input type="hidden" name="action" value="active_group">
+                                <input type="hidden" name="group_id" value="{{ g['id'] }}">
+                                <button type="submit" class="btn btn-success btn-sm"><i class="fas fa-check"></i> 解封</button>
+                            </form>
+                            {% end %}
+                            <button class="btn btn-outline btn-sm" onclick="editAnnouncement({{ g['id'] }}, '{{ g['announcement'] or '' }}')"><i class="fas fa-bullhorn"></i> 公告</button>
+                            <form method="post" style="display:inline;">
+                                {% module xsrf_form_html() %}
+                                <input type="hidden" name="action" value="delete_group">
+                                <input type="hidden" name="group_id" value="{{ g['id'] }}">
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('确定解散该群？')"><i class="fas fa-trash"></i> 解散</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% end %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <i class="fas fa-users"></i>
+            <h3>暂无群聊</h3>
+        </div>
+        {% end %}
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h3><i class="fas fa-file"></i> 文件管理</h3>
+    </div>
+    <div class="card-body">
+        {% if files %}
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>文件名</th>
+                        <th>大小</th>
+                        <th>类型</th>
+                        <th>上传者</th>
+                        <th>上传时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for f in files %}
+                    <tr>
+                        <td>#{{ f['id'] }}</td>
+                        <td><i class="fas fa-file" style="color:var(--color-primary);margin-right:6px;"></i>{{ f['file_name'] }}</td>
+                        <td>{{ f['file_size'] or '-' }}</td>
+                        <td><span class="badge badge-info">{{ f['file_type'] or '-' }}</span></td>
+                        <td>{{ f['uploader_id'] or '-' }}</td>
+                        <td style="font-size:12px;color:var(--text-muted);">{{ f['upload_at'] }}</td>
+                    </tr>
+                    {% end %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <i class="fas fa-inbox"></i>
+            <h3>暂无文件</h3>
+            <p>用户上传的文件将在这里显示</p>
+        </div>
+        {% end %}
+    </div>
+</div>
+
+<!-- Announcement Modal -->
+<div id="announcementModal" class="modal-overlay" style="display:none;">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h3>编辑群公告</h3>
+            <button type="button" class="modal-close" onclick="closeModal('announcementModal')"><i class="fas fa-times"></i></button>
+        </div>
+        <form method="post">
+            <div class="modal-body">
+                {% module xsrf_form_html() %}
+                <input type="hidden" name="action" value="update_announcement">
+                <input type="hidden" name="group_id" id="announcementGroupId">
+                <div class="form-group">
+                    <label>公告内容</label>
+                    <textarea name="announcement" id="announcementContent" rows="4" class="input" placeholder="输入群公告..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" onclick="closeModal('announcementModal')">取消</button>
+                <button type="submit" class="btn btn-primary">保存</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function editAnnouncement(id, content) {
+    document.getElementById('announcementGroupId').value = id;
+    document.getElementById('announcementContent').value = content;
+    document.getElementById('announcementModal').style.display = 'flex';
+}
+</script>
+{% end %}

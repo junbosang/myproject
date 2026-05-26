@@ -1,0 +1,131 @@
+{% extends "../base.html" %}
+{% block page_title %}系统设置{% end %}
+{% block body %}
+
+<div class="card">
+    <div class="card-header">
+        <h3><i class="fas fa-database"></i> 数据库设置</h3>
+    </div>
+    <div class="card-body">
+        <div class="form-group">
+            <label>当前数据库类型</label>
+            <div style="padding:12px;background:#f0fdf4;border-radius:var(--radius-sm);border:1px solid #a7f3d0;">
+                <i class="fas fa-check-circle" style="color:var(--color-success);"></i>
+                <strong>SQLite</strong> <span style="color:var(--text-muted);">— 文件型数据库 (database/app.db)</span>
+            </div>
+            <div class="hint">系统当前使用 SQLite 作为默认数据库，未来可切换至 MySQL 或其他数据库</div>
+        </div>
+        <div style="display:flex;gap:10px;">
+            <button class="btn btn-outline" disabled><i class="fas fa-database"></i> 切换至 MySQL (待配置)</button>
+            <button class="btn btn-outline" disabled><i class="fas fa-download"></i> 导出数据库</button>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h3><i class="fas fa-cog"></i> 系统配置</h3>
+    </div>
+    <div class="card-body">
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>配置键</th>
+                        <th>当前值</th>
+                        <th>类型</th>
+                        <th>说明</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>database_type</code></td>
+                        <td><span class="badge badge-primary">sqlite</span></td>
+                        <td>string</td>
+                        <td>数据库类型</td>
+                        <td><button class="btn btn-outline btn-sm">编辑</button></td>
+                    </tr>
+                    <tr>
+                        <td><code>login_failure_limit</code></td>
+                        <td><strong>5</strong></td>
+                        <td>number</td>
+                        <td>登录失败限制次数</td>
+                        <td><button class="btn btn-outline btn-sm">编辑</button></td>
+                    </tr>
+                    <tr>
+                        <td><code>session_timeout</code></td>
+                        <td><strong>3600</strong></td>
+                        <td>number</td>
+                        <td>会话超时时间 (秒)</td>
+                        <td><button class="btn btn-outline btn-sm">编辑</button></td>
+                    </tr>
+                    <tr>
+                        <td><code>upload_max_size</code></td>
+                        <td><strong>52,428,800</strong></td>
+                        <td>number</td>
+                        <td>最大上传大小 (字节)</td>
+                        <td><button class="btn btn-outline btn-sm">编辑</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h3><i class="fas fa-info-circle"></i> 系统信息</h3>
+    </div>
+    <div class="card-body">
+        <div class="info-grid">
+            <div class="info-cell">
+                <strong>系统名称</strong>
+                cnAgentOS 智能瞭望系统
+            </div>
+            <div class="info-cell">
+                <strong>版本号</strong>
+                v1.0.0
+            </div>
+            <div class="info-cell">
+                <strong>Web 框架</strong>
+                Tornado 6.5.5
+            </div>
+            <div class="info-cell">
+                <strong>Python 版本</strong>
+                3.12
+            </div>
+            <div class="info-cell">
+                <strong>数据库</strong>
+                SQLite3
+            </div>
+            <div class="info-cell">
+                <strong>服务端口</strong>
+                10086
+            </div>
+            <div class="info-cell">
+                <strong>前端框架</strong>
+                Bootstrap 5.3.8 / Layui 2.13.6
+            </div>
+            <div class="info-cell">
+                <strong>图标库</strong>
+                FontAwesome 5.15.4
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h3><i class="fas fa-tools"></i> 维护操作</h3>
+    </div>
+    <div class="card-body">
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <button class="btn btn-outline"><i class="fas fa-sync-alt"></i> 重新初始化数据库</button>
+            <button class="btn btn-outline"><i class="fas fa-trash-alt"></i> 清除缓存</button>
+            <button class="btn btn-outline"><i class="fas fa-file-export"></i> 导出配置</button>
+            <button class="btn btn-outline"><i class="fas fa-file-import"></i> 导入配置</button>
+        </div>
+    </div>
+</div>
+{% end %}

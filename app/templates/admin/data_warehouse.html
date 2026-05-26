@@ -1,0 +1,128 @@
+{% extends "../base.html" %}
+{% block page_title %}数据仓库{% end %}
+{% block body %}
+
+<div class="hero-banner">
+    <h2><i class="fas fa-database"></i> 数据仓库</h2>
+    <p>统一管理非关系型数据、关系型数据库和向量库存储</p>
+</div>
+
+<div class="stats-row">
+    <div class="stat-card primary">
+        <div class="stat-icon"><i class="fas fa-table"></i></div>
+        <div class="stat-info">
+            <div class="stat-value">10</div>
+            <div class="stat-label">数据表</div>
+        </div>
+    </div>
+    <div class="stat-card success">
+        <div class="stat-icon"><i class="fas fa-file-alt"></i></div>
+        <div class="stat-info">
+            <div class="stat-value">0</div>
+            <div class="stat-label">文档数据</div>
+        </div>
+    </div>
+    <div class="stat-card warning">
+        <div class="stat-icon"><i class="fas fa-project-diagram"></i></div>
+        <div class="stat-info">
+            <div class="stat-value">0</div>
+            <div class="stat-label">向量索引</div>
+        </div>
+    </div>
+    <div class="stat-card info">
+        <div class="stat-icon"><i class="fas fa-hdd"></i></div>
+        <div class="stat-info">
+            <div class="stat-value">SQLite</div>
+            <div class="stat-label">当前数据库</div>
+        </div>
+    </div>
+</div>
+
+<div class="grid-2">
+    <div class="card">
+        <div class="card-header"><h3><i class="fas fa-server"></i> 存储类型概览</h3></div>
+        <div class="card-body">
+            <div style="display:flex;flex-direction:column;gap:16px;">
+                <div style="display:flex;align-items:center;gap:16px;padding:16px;background:#f8fafc;border-radius:var(--radius-sm);">
+                    <div style="width:48px;height:48px;background:var(--color-primary-light);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--color-primary);flex-shrink:0;"><i class="fas fa-database"></i></div>
+                    <div style="flex:1;">
+                        <div style="font-weight:600;">关系型数据库</div>
+                        <div style="font-size:12px;color:var(--text-muted);">SQLite3 - 用于核心业务数据存储</div>
+                    </div>
+                    <span class="badge badge-success">运行中</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:16px;padding:16px;background:#f8fafc;border-radius:var(--radius-sm);">
+                    <div style="width:48px;height:48px;background:var(--color-success-light);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--color-success);flex-shrink:0;"><i class="fas fa-file-alt"></i></div>
+                    <div style="flex:1;">
+                        <div style="font-weight:600;">非关系型存储</div>
+                        <div style="font-size:12px;color:var(--text-muted);">文档存储 / 键值存储 - 待配置</div>
+                    </div>
+                    <span class="badge badge-warning">待配置</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:16px;padding:16px;background:#f8fafc;border-radius:var(--radius-sm);">
+                    <div style="width:48px;height:48px;background:var(--color-warning-light);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--color-warning);flex-shrink:0;"><i class="fas fa-project-diagram"></i></div>
+                    <div style="flex:1;">
+                        <div style="font-weight:600;">向量数据库</div>
+                        <div style="font-size:12px;color:var(--text-muted);">ChromaDB - 语义检索与知识库</div>
+                    </div>
+                    <span class="badge badge-warning">待配置</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header"><h3><i class="fas fa-chart-pie"></i> 存储统计</h3></div>
+        <div class="card-body">
+            <div style="display:flex;flex-direction:column;gap:16px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:#f8fafc;border-radius:var(--radius-sm);">
+                    <span style="font-weight:500;"><i class="fas fa-users" style="color:var(--color-primary);margin-right:8px;"></i>用户表</span>
+                    <span class="badge badge-primary">users</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:#f8fafc;border-radius:var(--radius-sm);">
+                    <span style="font-weight:500;"><i class="fas fa-robot" style="color:var(--color-success);margin-right:8px;"></i>数字员工表</span>
+                    <span class="badge badge-success">digital_employees</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:#f8fafc;border-radius:var(--radius-sm);">
+                    <span style="font-weight:500;"><i class="fas fa-brain" style="color:var(--color-warning);margin-right:8px;"></i>模型引擎表</span>
+                    <span class="badge badge-warning">model_engines</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:#f8fafc;border-radius:var(--radius-sm);">
+                    <span style="font-weight:500;"><i class="fas fa-comments" style="color:var(--color-info);margin-right:8px;"></i>聊天相关表</span>
+                    <span class="badge badge-info">4张表</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:#f8fafc;border-radius:var(--radius-sm);">
+                    <span style="font-weight:500;"><i class="fas fa-cog" style="color:var(--text-muted);margin-right:8px;"></i>系统配置表</span>
+                    <span class="badge badge-primary">2张表</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h3><i class="fas fa-tools"></i> 数据操作</h3>
+    </div>
+    <div class="card-body">
+        <div class="quick-grid" style="grid-template-columns:repeat(auto-fill, minmax(180px, 1fr));">
+            <div class="quick-item">
+                <i class="fas fa-download"></i>
+                <span>数据备份</span>
+            </div>
+            <div class="quick-item">
+                <i class="fas fa-upload"></i>
+                <span>数据恢复</span>
+            </div>
+            <div class="quick-item">
+                <i class="fas fa-sync-alt"></i>
+                <span>数据迁移</span>
+            </div>
+            <div class="quick-item">
+                <i class="fas fa-broom"></i>
+                <span>数据清理</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% end %}

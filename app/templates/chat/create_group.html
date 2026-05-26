@@ -1,0 +1,61 @@
+{% extends "../base.html" %}
+{% block page_title %}创建群聊{% end %}
+{% block body %}
+
+<div style="max-width:620px;margin:0 auto;">
+    <div class="card">
+        <div class="card-header">
+            <h3><i class="fas fa-plus-circle"></i> 创建群聊</h3>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% module xsrf_form_html() %}
+                <div class="form-group">
+                    <label>群聊名称 *</label>
+                    <input type="text" name="name" class="input" required placeholder="输入群聊名称" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label>群公告（可选）</label>
+                    <textarea name="announcement" class="input" rows="3" placeholder="输入群公告内容..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>选择成员</label>
+                    <div style="border:1px solid var(--border-color);border-radius:var(--radius-sm);max-height:260px;overflow-y:auto;padding:8px;">
+                        {% if friends %}
+                        {% for f in friends %}
+                        <label style="display:flex;align-items:center;padding:8px 10px;cursor:pointer;border-radius:4px;transition:background .2s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
+                            <input type="checkbox" name="member_ids" value="{{ f['id'] }}" style="margin-right:10px;width:16px;height:16px;">
+                            <div style="width:28px;height:28px;background:var(--color-primary);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:600;margin-right:8px;">{{ f['username'][0].upper() }}</div>
+                            <span>{{ f['username'] }}</span>
+                        </label>
+                        {% end %}
+                        {% else %}
+                        <div style="text-align:center;padding:20px;color:var(--text-muted);">暂无好友可添加</div>
+                        {% end %}
+
+                        {% if employees %}
+                        <div style="border-top:1px solid var(--border-color);margin:8px 0;padding-top:8px;"></div>
+                        <div style="padding:4px 10px 8px;font-weight:600;font-size:12px;color:var(--text-secondary);">数字员工（可选）</div>
+                        {% for e in employees %}
+                        <label style="display:flex;align-items:center;padding:8px 10px;cursor:pointer;border-radius:4px;background:#fffbeb;margin-bottom:2px;" onmouseover="this.style.background='#fef3c7'" onmouseout="this.style.background='#fffbeb'">
+                            <input type="checkbox" name="member_ids" value="{{ e['id'] }}" style="margin-right:10px;width:16px;height:16px;">
+                            <span style="font-size:22px;margin-right:8px;">{{ e['avatar'] or '🤖' }}</span>
+                            <span>{{ e['name'] }}</span>
+                        </label>
+                        {% end %}
+                        {% end %}
+                    </div>
+                </div>
+                <div style="display:flex;gap:12px;margin-top:20px;">
+                    <button type="submit" class="btn btn-primary" style="flex:1;">
+                        <i class="fas fa-check"></i> 创建群聊
+                    </button>
+                    <a href="/chat/home" class="btn btn-outline" style="flex:1;text-align:center;text-decoration:none;">
+                        <i class="fas fa-times"></i> 取消
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% end %}

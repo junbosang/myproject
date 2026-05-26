@@ -1,0 +1,88 @@
+{% extends "../base.html" %}
+{% block page_title %}数智大屏{% end %}
+{% block body %}
+
+<div class="dashboard-dark">
+    <h2><i class="fas fa-globe"></i> 实时数据看板</h2>
+
+    <div class="stat-row">
+        <div class="stat-cell">
+            <div class="num color-green">0</div>
+            <div class="lbl">活跃用户</div>
+        </div>
+        <div class="stat-cell">
+            <div class="num color-blue">0</div>
+            <div class="lbl">消息总数</div>
+        </div>
+        <div class="stat-cell">
+            <div class="num color-yellow">0</div>
+            <div class="lbl">群聊数量</div>
+        </div>
+        <div class="stat-cell">
+            <div class="num color-red">0</div>
+            <div class="lbl">舆情预警</div>
+        </div>
+    </div>
+
+    <div class="chart-row">
+        <div class="chart-box">
+            <i class="fas fa-chart-bar"></i>
+            <span>数据趋势图</span>
+            <span style="font-size:12px;">接入 ECharts 后将展示实时数据</span>
+        </div>
+        <div class="chart-box">
+            <i class="fas fa-cloud"></i>
+            <span>舆情词云</span>
+            <span style="font-size:12px;">接入后将展示热点词云</span>
+        </div>
+    </div>
+
+    <div style="margin-top:16px;">
+        <div class="chart-box" style="min-height:260px;">
+            <i class="fas fa-globe-americas" style="font-size:56px;"></i>
+            <span style="font-size:16px;">3D 数据地球</span>
+            <span style="font-size:12px;">接入 Three.js 后将展示 3D 可视化场景</span>
+        </div>
+    </div>
+</div>
+
+<div class="grid-2">
+    <div class="card">
+        <div class="card-header"><h3><i class="fas fa-chart-pie"></i> 报表组件预览</h3></div>
+        <div class="card-body">
+            <div class="quick-grid" style="grid-template-columns:repeat(3, 1fr);">
+                <div class="quick-item"><i class="fas fa-table"></i><span>数据表格</span></div>
+                <div class="quick-item"><i class="fas fa-chart-bar"></i><span>柱状图</span></div>
+                <div class="quick-item"><i class="fas fa-chart-line"></i><span>折线图</span></div>
+                <div class="quick-item"><i class="fas fa-chart-pie"></i><span>饼图</span></div>
+                <div class="quick-item"><i class="fas fa-tachometer-alt"></i><span>数字卡片</span></div>
+                <div class="quick-item"><i class="fas fa-tasks"></i><span>进度条</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header"><h3><i class="fas fa-cube"></i> 数字孪生组件</h3></div>
+        <div class="card-body">
+            <div class="info-grid">
+                <div class="info-cell">
+                    <strong>3D引擎</strong>
+                    Three.js (待引入)
+                </div>
+                <div class="info-cell">
+                    <strong>渲染方式</strong>
+                    WebGL / GPU加速
+                </div>
+                <div class="info-cell">
+                    <strong>数据绑定</strong>
+                    WebSocket + 3D模型
+                </div>
+                <div class="info-cell">
+                    <strong>演示场景</strong>
+                    3D Web版演示
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% end %}

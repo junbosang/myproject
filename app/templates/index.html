@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+{% block page_title %}首页概览{% end %}
+{% block body %}
+
+<div class="hero-banner">
+    <h2>欢迎回来，{{ username }}</h2>
+    <p>cnAgentOS 智能系统已就绪，所有服务运行正常</p>
+</div>
+
+<div class="stats-row">
+    <div class="stat-card primary">
+        <div class="stat-icon"><i class="fas fa-user-tie"></i></div>
+        <div class="stat-info">
+            <div class="stat-value">5</div>
+            <div class="stat-label">数字员工</div>
+        </div>
+    </div>
+    <div class="stat-card success">
+        <div class="stat-icon"><i class="fas fa-brain"></i></div>
+        <div class="stat-info">
+            <div class="stat-value">2</div>
+            <div class="stat-label">AI模型引擎</div>
+        </div>
+    </div>
+    <div class="stat-card warning">
+        <div class="stat-icon"><i class="fas fa-database"></i></div>
+        <div class="stat-info">
+            <div class="stat-value">3</div>
+            <div class="stat-label">数据存储</div>
+        </div>
+    </div>
+    <div class="stat-card info">
+        <div class="stat-icon"><i class="fas fa-shield-alt"></i></div>
+        <div class="stat-info">
+            <div class="stat-value">正常</div>
+            <div class="stat-label">安全状态</div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h3><i class="fas fa-th-large"></i> 快捷入口</h3>
+    </div>
+    <div class="card-body">
+        <div class="quick-grid">
+            <a href="/admin/digital-employee" class="quick-item">
+                <i class="fas fa-user-tie"></i>
+                <span>数字员工</span>
+            </a>
+            <a href="/admin/model-engine" class="quick-item">
+                <i class="fas fa-brain"></i>
+                <span>模型引擎</span>
+            </a>
+            <a href="/chat/home" class="quick-item">
+                <i class="fas fa-comments"></i>
+                <span>智能聊天</span>
+            </a>
+            <a href="/admin/watch-tower" class="quick-item">
+                <i class="fas fa-binoculars"></i>
+                <span>瞭望管理</span>
+            </a>
+            <a href="/admin/data-warehouse" class="quick-item">
+                <i class="fas fa-database"></i>
+                <span>数据仓库</span>
+            </a>
+            <a href="/admin/interface" class="quick-item">
+                <i class="fas fa-plug"></i>
+                <span>接口管理</span>
+            </a>
+            <a href="/admin/dashboard" class="quick-item">
+                <i class="fas fa-chart-line"></i>
+                <span>数智大屏</span>
+            </a>
+            <a href="/admin/settings" class="quick-item">
+                <i class="fas fa-cog"></i>
+                <span>系统设置</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="grid-2">
+    <div class="card">
+        <div class="card-header">
+            <h3><i class="fas fa-robot"></i> 数字员工状态</h3>
+            <a href="/admin/digital-employee" class="btn btn-outline btn-sm">管理</a>
+        </div>
+        <div class="card-body">
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>员工名称</th>
+                            <th>类型</th>
+                            <th>状态</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><i class="fas fa-robot" style="color:var(--color-primary);margin-right:8px;"></i>川农小助手</td>
+                            <td><span class="badge badge-primary">知识问答</span></td>
+                            <td><span class="badge badge-success">在线</span></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-cloud-sun" style="color:var(--color-warning);margin-right:8px;"></i>天气小助手</td>
+                            <td><span class="badge badge-info">天气查询</span></td>
+                            <td><span class="badge badge-success">在线</span></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-coffee" style="color:var(--color-danger);margin-right:8px;"></i>毒鸡汤助手</td>
+                            <td><span class="badge badge-warning">情感陪伴</span></td>
+                            <td><span class="badge badge-success">在线</span></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-newspaper" style="color:var(--color-info);margin-right:8px;"></i>新闻助手</td>
+                            <td><span class="badge badge-info">资讯推送</span></td>
+                            <td><span class="badge badge-success">在线</span></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-film" style="color:var(--color-success);margin-right:8px;"></i>电影助手</td>
+                            <td><span class="badge badge-primary">娱乐推荐</span></td>
+                            <td><span class="badge badge-success">在线</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h3><i class="fas fa-server"></i> 系统状态</h3>
+        </div>
+        <div class="card-body">
+            <div class="info-grid">
+                <div class="info-cell">
+                    <strong>数据库</strong>
+                    <span style="color:var(--color-success);"><i class="fas fa-check-circle"></i> SQLite - 正常</span>
+                </div>
+                <div class="info-cell">
+                    <strong>服务器</strong>
+                    <span style="color:var(--color-success);"><i class="fas fa-check-circle"></i> 正常运行</span>
+                </div>
+                <div class="info-cell">
+                    <strong>AI模型</strong>
+                    <span style="color:var(--color-success);"><i class="fas fa-check-circle"></i> 已加载</span>
+                </div>
+                <div class="info-cell">
+                    <strong>安全防护</strong>
+                    <span style="color:var(--color-success);"><i class="fas fa-check-circle"></i> XSRF + Cookie加密</span>
+                </div>
+                <div class="info-cell">
+                    <strong>框架版本</strong>
+                    Tornado 6.5.5
+                </div>
+                <div class="info-cell">
+                    <strong>系统版本</strong>
+                    v1.0.0
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% end %}
